@@ -1,6 +1,5 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
-// تأكد أنك صاوبتي هاد الملف وحطيتي فيه كود المستويات اللي عطاك Claude
 import 'levels_page.dart'; 
 
 void main() {
@@ -377,7 +376,6 @@ class _PlayButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // هاد السطر هو اللي كيديك لصفحة المستويات
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => const LevelsPage()),
@@ -467,3 +465,6 @@ class _ParticlePainter extends CustomPainter {
   @override
   bool shouldRepaint(_ParticlePainter old) => old.progress != progress;
 }
+
+
+

@@ -1,7 +1,7 @@
 import 'dart:math' as math;
 import 'dart:ui';
 import 'package:flutter/material.dart';
-
+import 'level_one_hub.dart';
 // ═══════════════════════════════════════════════════════════════════════════════
 //  LEVELS PAGE — Standalone file
 //
@@ -333,14 +333,31 @@ class _LevelCardState extends State<LevelCard>
       onTapDown:   _down,
       onTapUp:     _up,
       onTapCancel: _cancel,
-      onTap: () => ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('▶  Starting: ${d.latin}'),
-          backgroundColor: d.accentColor.withOpacity(0.92),
-          behavior: SnackBarBehavior.floating,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      onTap: () {
+  if (d.number == 1) {
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        pageBuilder: (_, anim, __) => const LevelOneHubPage(),
+        transitionsBuilder: (_, anim, __, child) => FadeTransition(
+          opacity: anim,
+          child: SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(0, 0.08),
+              end: Offset.zero,
+            ).animate(CurvedAnimation(parent: anim, curve: Curves.easeOut)),
+            child: child,
+          ),
         ),
+        transitionDuration: const Duration(milliseconds: 480),
       ),
+    );
+  } else if (d.number == 2) {
+    // Navigator.push → LevelTwoHubPage() — جي تزيدو مستقبلاً
+  } else if (d.number == 3) {
+    // Navigator.push → LevelThreeHubPage() — جي تزيدو مستقبلاً
+  }
+},
       child: ScaleTransition(
         scale: _tapScale,
         child: _CardBody(data: d),
